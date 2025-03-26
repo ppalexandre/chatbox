@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox Login</title>
+    <link rel="stylesheet" href="login.css" type="text/css">
+    <script src="login.js"></script>
+</head>
+<body>
+        <h2>User login: </h2>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" maxlength="30" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" maxlength="100" required><br>
+        <button onclick="submitForm()" id="sumbitButton">Submit</button>
+        <div id="errorBox"></div>
+        <a href="/register/register.html">Sign Up</a>
+</body>
+</html>
