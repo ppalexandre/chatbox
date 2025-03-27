@@ -7,22 +7,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $msg = $data -> msg;
     $username = $data -> username;
     $session = $data -> session;
+    $timestamp = gmdate("Y-m-d H:i:s");
 
     $username = mysqli_real_escape_string($mysqli, $username);
     $msg = mysqli_real_escape_string($mysqli, $msg);
     $session = mysqli_real_escape_string($mysqli, $session); 
 
     if(isUserMessageSizeValid($username, $msg) && checkSession($username, $session, $globalUserId = true)){
-        sendMsg($msg, $userId, $ip);
+        sendMsg($msg, $userId, $ip, $timestamp);
     } 
 }
 
-function sendMsg($msg, $userId, $ip) {
+function sendMsg($msg, $userId, $ip, $timestamp) {
     global $mysqli;
 
     $messageQuery = mysqli_query($mysqli, 
-        "INSERT INTO messages (msg_content, user_id, msg_ip)
-        VALUES('$msg', '$userId', '$ip');");
+        "INSERT INTO messages (msg_content, user_id, msg_ip, msg_timestamp)
+        VALUES('$msg', '$userId', '$ip', '$timestamp');");
 }
 
 function checkSession($username, $session, $globalUserId = false) {

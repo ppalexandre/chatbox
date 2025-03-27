@@ -9,13 +9,14 @@ $lastMsgIdDatabase = $lastMsgIdDatabase["msg_id"];
 
 if($lastMsgIdUser < $lastMsgIdDatabase){
     $msgQuery = mysqli_query($mysqli, 
-        "SELECT msg_id, msg_content, user_id FROM messages WHERE msg_id > $lastMsgIdUser ORDER BY msg_id ASC;");
+        "SELECT msg_id, msg_content, user_id, msg_timestamp FROM messages WHERE msg_id > $lastMsgIdUser ORDER BY msg_id ASC;");
 
     $counter = 0;
     while($row = $msgQuery->fetch_assoc()) {
         $msgId = $row["msg_id"];
         $msgContent = $row["msg_content"];
         $userId = $row["user_id"];
+        $timestamp = $row["msg_timestamp"];
 
         $userNameQuery = mysqli_query($mysqli, 
             "SELECT user_name FROM users WHERE user_id='$userId';");
@@ -23,7 +24,7 @@ if($lastMsgIdUser < $lastMsgIdDatabase){
             $userName = $row["user_name"];
         }
 
-        $msg = array("msgId" => $msgId, "msgContent" =>  $msgContent, "userName" => $userName);
+        $msg = array("msgId" => $msgId, "msgContent" =>  $msgContent, "userName" => $userName, "timestamp" => $timestamp);
         $log[$counter] = $msg;
         $counter++;
     }

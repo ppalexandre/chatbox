@@ -37,15 +37,22 @@ async function requestMsgLog(){
 function displayMsgLog(){
     let chatbox = document.getElementById("chatbox");
     let log = messageLog.log;
+
     let scroll = false;
     if(chatbox.scrollTop === chatbox.scrollHeight - chatbox.clientHeight){
         scroll = true;
     }
+
     for(let i = 0; i < log.length; i++){
         let user = sanitizeInput(log[i].userName);
         let msg = sanitizeInput(log[i].msgContent);
-        chatbox.innerHTML += `<span class='user'>${user}:</span> ${msg}<br>`;
+        let timestamp = parseDate(log[i].timestamp);
+        let time = formatTime(timestamp.getHours(), timestamp.getMinutes());
+        chatbox.innerHTML += `<span class='date'>${time}</span> `;
+        chatbox.innerHTML += `<span class='user'>${user}:</span> `;
+        chatbox.innerHTML += `${msg}<br>`;
     }
+
     if(scroll){
         chatbox.scrollTop = chatbox.scrollHeight; 
     }
@@ -81,6 +88,25 @@ function getCookie(cookieName) {
         }
     }
     return "";
+}
+
+function parseDate(date){
+    date = date.split(/[- :]/);
+    let parsedDate = new Date(Date.UTC(date[0], date[1], date[2], date[3], date[4], date[5]));
+    return parsedDate;
+}
+
+function formatTime(hours, minutes){
+    hours = hours.toString();
+    minutes = minutes.toString();
+    if (hours.length < 2){
+        hours = "0" + hours;
+    }
+    if (minutes.length < 2){
+        minutes = "0" + minutes;
+    }
+    let time = `${hours}:${minutes}`; 
+    return time;
 }
 
 function enterKeyListener(){
