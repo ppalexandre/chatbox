@@ -115,5 +115,13 @@ function enterKeyListener(){
     }
 }
 
+function redirectPage(page){
+    window.location.href = page;
+}
+
+if (session == ""){
+    redirectPage("/login/login.html");
+}
+
 // let msgInput = document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
 setInterval(requestMsgLog, 3000);
