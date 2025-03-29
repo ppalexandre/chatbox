@@ -1,3 +1,44 @@
 #errorBox{
     color: #cc2222;  
 }
+
+.mainForm{
+    width: 300px;
+    padding: 20px;
+    background-color: #dfdfdf;
+    border-radius: 8px;
+    margin-top: 30px;
+    justify-self: center;
+}
+
+.mainForm legend{
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 20px;
+    justify-self: center;
+}
+
+.mainForm label{
+    display: block;
+    margin-bottom: -15px;
+}
+
+.mainForm input[type="text"],input[type="password"]{
+    display: block;
+    width: calc(100% - 20px);
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid #777777;
+    border-radius: 4px;
+    margin-bottom: -5px;
+    font-size: 20px;
+}
+
+.mainForm button[type="submit"]{
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}

@@ -124,4 +124,5 @@ if (session == ""){
 }
 
 // let msgInput = document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
+requestMsgLog();
 setInterval(requestMsgLog, 3000);

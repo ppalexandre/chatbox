@@ -8,15 +8,17 @@
     <script src="register.js"></script>
 </head>
 <body>
-    <h2>User registration: </h2>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" maxlength="30" required><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" maxlength="100" required><br>
-    <label for="repassword">Retype your password:</label><br>
-    <input type="password" id="repassword" name="repassword" maxlength="100" required><br>
-    <button onclick="submitForm()" id="sumbitButton">Submit</button>
-    <div id="errorBox"></div>
-    <a href="/login/login.html">Sign In</a>
+    <form onsubmit="submitForm(); return false" class="mainForm">
+        <legend>Sign Up</legend>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" maxlength="30" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" maxlength="100" required><br>
+        <label for="repassword">Retype your password:</label><br>
+        <input type="password" id="repassword" name="repassword" maxlength="100" required><br>
+        <button id="submitButton" type="submit">Submit</button>
+        <a href="/login/login.html">Sign In</a>
+        <div id="errorBox"></div>
+    </form>
 </body>
 </html>

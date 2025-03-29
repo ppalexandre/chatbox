@@ -8,13 +8,15 @@
     <script src="login.js"></script>
 </head>
 <body>
-        <h2>User login: </h2>
+    <form onsubmit="submitForm(); return false" class="mainForm">
+        <legend>Login</legend>
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username" maxlength="30" required><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" maxlength="100" required><br>
-        <button onclick="submitForm()" id="sumbitButton">Submit</button>
-        <div id="errorBox"></div>
+        <button id="submitButton" type="submit">Submit</button>
         <a href="/register/register.html">Sign Up</a>
+        <div id="errorBox"></div>
+    </form>
 </body>
 </html>
