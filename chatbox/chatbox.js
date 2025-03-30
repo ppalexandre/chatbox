@@ -120,7 +120,7 @@ function redirectPage(page){
 }
 
 if (session == ""){
-    redirectPage("/login/login.html");
+    redirectPage("/login/");
 }
 
 // let msgInput = document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);

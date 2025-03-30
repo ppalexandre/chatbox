@@ -18,7 +18,7 @@ async function submitForm(){
             if (response.session != null){
                 storeSessionCookie(username, response.session);
                 if(document.cookie != ""){
-                    redirectPage("/chatbox/chatbox.html");
+                    redirectPage("/chatbox/");
                 }
             }
             let errorBox = document.getElementById("errorBox");
