@@ -1,5 +1,6 @@
 <?php
 require "../sql.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //$ip = $_SERVER['REMOTE_ADDR'];
@@ -25,10 +26,15 @@ function checkLogin($username, $password) {
     if (empty($passwordHash)) {
         sendResponse("Error: Username not found");
     }
+
     else{
         $isPasswordCorrect = password_verify($password, $passwordHash);
+
         if ($isPasswordCorrect){
-            sendSession($username);
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username;
+            $_SESSION["userId"] = getUserId($username);
+            sendResponse("Access granted", true);
         }
         else {
             sendResponse("Error: Incorrect password");
@@ -36,39 +42,21 @@ function checkLogin($username, $password) {
     }
 }
 
-function sendSession($username){
+function getUserId($username){
     global $mysqli;
-    $responseMessage = "Access granted";
-
     $userIdQuery = mysqli_query($mysqli, 
         "SELECT user_id FROM users WHERE user_name='$username';");
     $userId = $userIdQuery->fetch_assoc();
     $userId = $userId["user_id"];
-
-    $sessionQuery = mysqli_query($mysqli, 
-        "SELECT session FROM sessions WHERE user_id='$userId';");
-    $session = $sessionQuery->fetch_assoc();
-    $session = $session["session"];
-
-    if(empty($session)){
-        // Generates new session and inserts it into the database
-        $length = 20;
-        $prefix = uniqid('', true);
-        $session = substr(str_replace('.', '', $prefix), 0, $length);
-        $insertSession = mysqli_query($mysqli, 
-            "INSERT INTO sessions (session, user_id) 
-            VALUES ('$session', '$userId');");
-    }
-
-    sendResponse($responseMessage, $session);
+    return $userId;
 }
 
-function sendResponse($responseMessage, $session = 0){
-    if($session == 0){
+function sendResponse($responseMessage, $login = false){
+    if($login == false){
         $response = array("responseMessage" => $responseMessage);
     }
     else{
-        $response = array("responseMessage" => $responseMessage, "session" =>  $session);
+        $response = array("responseMessage" => $responseMessage, "login" => $login);
     }
     echo json_encode($response);
 }

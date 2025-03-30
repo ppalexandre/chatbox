@@ -29,12 +29,6 @@ CREATE TABLE messages (
     msg_ip varchar (50) not null),
     msg_timestamp timestamp;
 
-CREATE TABLE sessions (
-    session_id int primary key auto_increment,
-    session varchar(20) not null unique,
-    user_id int not null,
-    FOREIGN KEY (user_id) REFERENCES users(user_id));
-
 The database should end up looking like this:
 
 - users:
@@ -56,12 +50,3 @@ The database should end up looking like this:
 | msg_ip        | varchar(50)  | NO   |     | NULL    |                |
 | msg_timestamp | timestamp    | YES  |     | NULL    |                |
 +---------------+--------------+------+-----+---------+----------------+
-
-- sessions:
-+------------+-------------+------+-----+---------+----------------+
-| Field      | Type        | Null | Key | Default | Extra          |
-+------------+-------------+------+-----+---------+----------------+
-| session_id | int(11)     | NO   | PRI | NULL    | auto_increment |
-| session    | varchar(20) | NO   | UNI | NULL    |                |
-| user_id    | int(11)     | NO   | MUL | NULL    |                |
-+------------+-------------+------+-----+---------+----------------+

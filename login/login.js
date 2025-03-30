@@ -15,11 +15,9 @@ async function submitForm(){
 
         if (response != ""){
             response = JSON.parse(response); 
-            if (response.session != null){
-                storeSessionCookie(username, response.session);
-                if(document.cookie != ""){
-                    redirectPage("/chatbox/");
-                }
+            console.log(response);
+            if (response.login == true){
+                redirectPage("/chatbox/");
             }
             let errorBox = document.getElementById("errorBox");
             errorBox.innerText = response.responseMessage;
@@ -37,9 +35,4 @@ function clearForm(){
 
 function redirectPage(page){
     window.location.href = page;
-}
-
-function storeSessionCookie(username, session){
-    document.cookie = `username=${username}; path=/`;
-    document.cookie = `session=${session}; path=/`;
 }

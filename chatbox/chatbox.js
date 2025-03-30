@@ -2,8 +2,6 @@
 //let msgInput = document.getElementById("msgInput");
 let messageLog = "";
 let lastMsgId = 0;
-let session = getCookie("session");
-let username = getCookie("username");
 
 async function sendMsg(){
     let message = document.getElementById("msgInput").value;
@@ -11,7 +9,7 @@ async function sendMsg(){
         fetch('/handleMessage.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({msg: message, username: username, session: session})
+            body: JSON.stringify({msg: message})
         })
         .then((response) => response.text())
         .catch((error) => console.error('ERROR:', error));
@@ -48,6 +46,7 @@ function displayMsgLog(){
         let msg = sanitizeInput(log[i].msgContent);
         let timestamp = parseDate(log[i].timestamp);
         let time = formatTime(timestamp.getHours(), timestamp.getMinutes());
+
         chatbox.innerHTML += `<span class='date'>${time}</span> `;
         chatbox.innerHTML += `<span class='user'>${user}:</span> `;
         chatbox.innerHTML += `${msg}<br>`;
@@ -72,23 +71,23 @@ function clearMsgInput() {
     msgInput.value = "";
 }
 
-function getCookie(cookieName) {
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let cookiesArray = decodedCookie.split(';');
+// function getCookie(cookieName) {
+//     let decodedCookie = decodeURIComponent(document.cookie);
+//     let cookiesArray = decodedCookie.split(';');
 
-    for(let i = 0; i < cookiesArray.length; i++) {
-        let cookie = cookiesArray[i];
+//     for(let i = 0; i < cookiesArray.length; i++) {
+//         let cookie = cookiesArray[i];
 
-        while (cookie.charAt(0) == ' ') {
-            cookie = cookie.substring(1);
-        }
+//         while (cookie.charAt(0) == ' ') {
+//             cookie = cookie.substring(1);
+//         }
 
-        if (cookie.indexOf(cookieName) == 0) {
-            return cookie.substring(cookieName.length + 1, cookie.length); 
-        }
-    }
-    return "";
-}
+//         if (cookie.indexOf(cookieName) == 0) {
+//             return cookie.substring(cookieName.length + 1, cookie.length); 
+//         }
+//     }
+//     return "";
+// }
 
 function parseDate(date){
     date = date.split(/[- :]/);
@@ -117,10 +116,6 @@ function enterKeyListener(){
 
 function redirectPage(page){
     window.location.href = page;
-}
-
-if (session == ""){
-    redirectPage("/login/");
 }
 
 // let msgInput = document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
