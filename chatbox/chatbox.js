@@ -71,24 +71,6 @@ function clearMsgInput() {
     msgInput.value = "";
 }
 
-// function getCookie(cookieName) {
-//     let decodedCookie = decodeURIComponent(document.cookie);
-//     let cookiesArray = decodedCookie.split(';');
-
-//     for(let i = 0; i < cookiesArray.length; i++) {
-//         let cookie = cookiesArray[i];
-
-//         while (cookie.charAt(0) == ' ') {
-//             cookie = cookie.substring(1);
-//         }
-
-//         if (cookie.indexOf(cookieName) == 0) {
-//             return cookie.substring(cookieName.length + 1, cookie.length); 
-//         }
-//     }
-//     return "";
-// }
-
 function parseDate(date){
     date = date.split(/[- :]/);
     let parsedDate = new Date(Date.UTC(date[0], date[1], date[2], date[3], date[4], date[5]));
