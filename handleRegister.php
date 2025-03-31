@@ -22,7 +22,7 @@ function checkUser() {
     $usernameCount = $usernameQuery->fetch_assoc();
     $usernameCount = $usernameCount["COUNT(user_name)"];
 
-    if($usernameCount > 1){
+    if($usernameCount > 0){
         echo "Error, username already taken.";
     }
     else{
