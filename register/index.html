@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbox Register</title>
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
     <link rel="stylesheet" href="register.css" type="text/css">
     <script src="register.js"></script>
 </head>
 <body>
+    <div class="header">
+        <h1>Chatbox</h1>
+    </div>
     <form onsubmit="submitForm(); return false" class="mainForm">
         <legend>Sign Up</legend>
         <label for="username">Username:</label><br>
@@ -20,5 +24,11 @@
         <a href="/login/">Sign In</a>
         <div id="errorBox"></div>
     </form>
+    <div class="footer">
+        <a href="https://github.com/ppalexandre/chatbox" target="_blank" rel="noopener noreferrer">
+            <img src="/imgs/github_icon.png" alt="Github icon">
+            <div>Github Repository</div>
+        </a>
+    </div>
 </body>
 </html>

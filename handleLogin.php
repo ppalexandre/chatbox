@@ -34,7 +34,7 @@ function checkLogin($username, $password) {
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
             $_SESSION["userId"] = getUserId($username);
-            sendResponse("Access granted", true);
+            sendResponse("Login suscessful", true);
         }
         else {
             sendResponse("Error: Incorrect password");

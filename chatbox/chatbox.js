@@ -47,9 +47,15 @@ function displayMsgLog(){
         let timestamp = parseDate(log[i].timestamp);
         let time = formatTime(timestamp.getHours(), timestamp.getMinutes());
 
-        chatbox.innerHTML += `<span class='date'>${time}</span> `;
-        chatbox.innerHTML += `<span class='user'>${user}:</span> `;
-        chatbox.innerHTML += `${msg}<br>`;
+        let messageDiv = document.createElement("div");
+        messageDiv.className = "message";
+
+        messageDiv.innerHTML += `<span class='date'>${time}</span> `;
+        messageDiv.innerHTML += `<span class='user'>${user}: </span>`;
+        messageDiv.innerHTML += `${msg}<br>`;
+
+        chatbox.appendChild(messageDiv); 
+        colorAllMessages();
     }
 
     if(scroll){
@@ -57,7 +63,20 @@ function displayMsgLog(){
     }
 }
 
-function sanitizeInput(input) {
+function colorAllMessages(){
+    messages = document.getElementsByClassName("message");
+    for(let i = 0; i < messages.length; i++){
+        let message = messages[i];
+        if(i % 2 == 0){
+            message.className = "message messageDark";
+        }
+        else{
+            message.className = "message messageLight";
+        }
+    }
+}
+
+function sanitizeInput(input){
     return input 
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -66,7 +85,7 @@ function sanitizeInput(input) {
         .replace(/'/g, "&#039;");
 }
 
-function clearMsgInput() {
+function clearMsgInput(){
     let msgInput = document.getElementById("msgInput"); 
     msgInput.value = "";
 }
