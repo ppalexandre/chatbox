@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $userId = $_SESSION["userId"];
     $timestamp = gmdate("Y-m-d H:i:s");
 
+    $msg = trim($msg);
     $msg = mysqli_real_escape_string($mysqli, $msg);
 
     if(isMessageSizeValid($msg) && $loggedin == true){

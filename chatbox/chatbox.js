@@ -5,6 +5,7 @@ let lastMsgId = 0;
 
 async function sendMsg(){
     let message = document.getElementById("msgInput").value;
+    message = message.trim();
     if (message != ""){
         fetch('/handleMessage.php', {
             method: 'POST',
