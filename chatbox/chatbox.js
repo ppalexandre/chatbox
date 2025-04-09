@@ -2,6 +2,7 @@
 //let msgInput = document.getElementById("msgInput");
 let messageLog = "";
 let lastMsgId = 0;
+let regexLink = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:, .;]*[-a-zA-Z0-9+&@#/%=~_|])";
 
 async function sendMsg(){
     let message = document.getElementById("msgInput").value;
@@ -45,6 +46,8 @@ function displayMsgLog(){
     for(let i = 0; i < log.length; i++){
         let user = sanitizeInput(log[i].userName);
         let msg = sanitizeInput(log[i].msgContent);
+        msg = addLinks(msg);
+
         let timestamp = parseDate(log[i].timestamp);
         let time = formatTime(timestamp.getHours(), timestamp.getMinutes());
 
@@ -62,6 +65,16 @@ function displayMsgLog(){
     if(scroll){
         chatbox.scrollTop = chatbox.scrollHeight; 
     }
+}
+
+function addLinks(message){
+    let wordArray = message.split();
+    for(let i = 0; i < wordArray.length; i++){
+        if(wordArray[i].match(regexLink)){
+            wordArray[i] = `<a href=${wordArray[i]}>${wordArray[i]}</a>`;
+        }
+    }
+    return wordArray.join();
 }
 
 function colorAllMessages(){
@@ -122,4 +135,4 @@ function redirectPage(page){
 
 // let msgInput = document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
 requestMsgLog();
-setInterval(requestMsgLog, 3000);
+setInterval(requestMsgLog, 1000);
