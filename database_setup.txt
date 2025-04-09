@@ -26,8 +26,8 @@ CREATE TABLE messages (
     msg_content varchar(800) not null,
     user_id int not null,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    msg_ip varchar (50) not null),
-    msg_timestamp timestamp;
+    msg_ip varchar (50) not null,
+    msg_timestamp timestamp);
 
 The database should end up looking like this:
 
