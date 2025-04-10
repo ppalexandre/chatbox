@@ -1,11 +1,31 @@
-*{
-    height: 100%;
-    box-sizing: border-box;
+body{
+    display: flexbox;
 }
 
-body {
-    background-color: #dfdfdf;
+#settingsButton{
+    background-image: url("/imgs/cog.svg");
+    height: 35px;
+    width: 35px;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    z-index: 11;
+    cursor: pointer;
+}
+
+#settingsPanel{ 
+    display: none;
+    z-index: 10;
+}
+
+#darkFilter {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
+    background-color: #000000aa;
+    z-index: 9;
 }
 
 .header{
@@ -120,6 +140,7 @@ body {
 
 .user {
     color: #2222dd;
+    text-shadow: 2px 2px 4px rgba(0, 0, 10, 0.40);
 }
 
 .date {

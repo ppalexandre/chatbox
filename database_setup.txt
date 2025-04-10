@@ -19,7 +19,9 @@ USE chatbox;
 CREATE TABLE users (
     user_id int primary key auto_increment,
     user_name varchar(30) not null unique,
-    password_hash varchar(60) not null);
+    password_hash varchar(60) not null,
+    user_color char(6) not null
+);
 
 CREATE TABLE messages (
     msg_id int primary key auto_increment,
@@ -27,7 +29,8 @@ CREATE TABLE messages (
     user_id int not null,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     msg_ip varchar (50) not null,
-    msg_timestamp timestamp);
+    msg_timestamp timestamp
+);
 
 The database should end up looking like this:
 
@@ -38,6 +41,7 @@ The database should end up looking like this:
 | user_id       | int(11)     | NO   | PRI | NULL    | auto_increment |
 | user_name     | varchar(30) | NO   | UNI | NULL    |                |
 | password_hash | varchar(60) | NO   |     | NULL    |                |
+| user_color    | char(6)     | NO   |     | NULL    |                |
 +---------------+-------------+------+-----+---------+----------------+
 
 - messages:

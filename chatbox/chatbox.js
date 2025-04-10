@@ -45,6 +45,8 @@ function displayMsgLog(){
 
     for(let i = 0; i < log.length; i++){
         let user = sanitizeInput(log[i].userName);
+        let userColor = log[i].userColor;
+        userColor = "#" + userColor;
         let msg = sanitizeInput(log[i].msgContent);
         msg = addLinks(msg);
 
@@ -55,7 +57,7 @@ function displayMsgLog(){
         messageDiv.className = "message";
 
         messageDiv.innerHTML += `<span class='date'>${time}</span> `;
-        messageDiv.innerHTML += `<span class='user'>${user}: </span>`;
+        messageDiv.innerHTML += `<span class='user' style="color:${userColor}">${user}: </span>`;
         messageDiv.innerHTML += `${msg}<br>`;
 
         chatbox.appendChild(messageDiv); 
@@ -123,6 +125,35 @@ function formatTime(hours, minutes){
     return time;
 }
 
+async function sendUserSettings(){
+    let userColor = document.getElementById("userColor").value;
+    userColor = userColor.slice(1, 7);
+    if (userColor != ""){
+        fetch('/handleSettings.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({userColor: userColor})
+        })
+        .then((response) => response.text())
+        .catch((error) => console.error('ERROR:', error));
+    }
+    toggleSettingsPanel();
+}
+
+function toggleSettingsPanel(){
+    let settingsPanel = document.getElementById("settingsPanel");
+    let darkFilter = document.getElementById("darkFilter");
+
+    if (settingsPanel.style.display == ""){
+        settingsPanel.style.display = "block";
+        darkFilter.style.display = "initial";
+    }
+    else{
+        settingsPanel.style.display = "";
+        darkFilter.style.display = "";
+    }
+}
+
 function enterKeyListener(){
     if (event.key === "Enter"){
         sendMsg();
@@ -133,6 +164,7 @@ function redirectPage(page){
     window.location.href = page;
 }
 
-// let msgInput = document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
+// document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
+// document.getElementById("settingsButton").addEventListener("click", "toggleSettingsPanel");
 requestMsgLog();
 setInterval(requestMsgLog, 1000);

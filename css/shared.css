@@ -1,6 +1,10 @@
-body{
-    margin: 0;
+*{
+    box-sizing: border-box;
+}
+
+body {
     background-color: #dfdfdf;
+    margin: 0;
 }
 
 .header{
@@ -55,29 +59,35 @@ body{
 }
 
 .mainForm{
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     width: 300px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     margin-top: 70px;
-    justify-self: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .mainForm legend{
+    position: relative;
     font-weight: bold;
     font-size: 25px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     justify-self: center;
 }
 
 .mainForm label{
-    display: block;
+    display: inline-block;
+    position: relative;
     margin-bottom: -15px;
 }
 
 .mainForm input[type="text"],input[type="password"]{
     display: block;
+    position: relative;
     width: 100%;
     height: 30px;
     box-sizing: border-box;
@@ -88,10 +98,11 @@ body{
 }
 
 .mainForm button[type="submit"]{
+    position: relative;
     height: 30px;
-    margin-top: 5px;
-    margin-right: 5px;
     font-weight: bold;
     font-size: 15px;
+    margin-top: 15px;
+    margin-right: 5px;
     cursor: pointer;
 }

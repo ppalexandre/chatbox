@@ -18,13 +18,14 @@ if($lastMsgIdUser < $lastMsgIdDatabase){
         $userId = $row["user_id"];
         $timestamp = $row["msg_timestamp"];
 
-        $userNameQuery = mysqli_query($mysqli, 
-            "SELECT user_name FROM users WHERE user_id='$userId';");
-        while($row = $userNameQuery->fetch_assoc()) {
+        $userQuery = mysqli_query($mysqli, 
+            "SELECT user_name, user_color FROM users WHERE user_id='$userId';");
+        while($row = $userQuery->fetch_assoc()) {
             $userName = $row["user_name"];
+            $userColor = $row["user_color"];
         }
 
-        $msg = array("msgId" => $msgId, "msgContent" =>  $msgContent, "userName" => $userName, "timestamp" => $timestamp);
+        $msg = array("msgId" => $msgId, "msgContent" =>  $msgContent, "userName" => $userName, "timestamp" => $timestamp, "userColor" => $userColor);
         $log[$counter] = $msg;
         $counter++;
     }
