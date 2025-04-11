@@ -35,8 +35,8 @@ function createUser($f_username, $f_password) {
     global $mysqli;
     $hashed_password = password_hash($f_password, PASSWORD_DEFAULT);
     $insertUser = mysqli_query($mysqli, 
-        "INSERT INTO users (user_name, password_hash)
-        VALUES('$f_username', '$hashed_password');");
+        "INSERT INTO users (user_name, password_hash, user_color)
+        VALUES('$f_username', '$hashed_password', '2222dd');");
 }
 
 function isUserLoginSizeValid($username, $password) {
