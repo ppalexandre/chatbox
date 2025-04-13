@@ -1,8 +1,7 @@
-//let chatbox = document.getElementById("chatbox");
-//let msgInput = document.getElementById("msgInput");
 let messageLog = "";
 let lastMsgId = 0;
 let regexLink = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:, .;]*[-a-zA-Z0-9+&@#/%=~_|])";
+allPanelIds = ["localSettingsPanel", "userSettingsPanel"];
 
 async function sendMsg(){
     let message = document.getElementById("msgInput").value;
@@ -13,8 +12,8 @@ async function sendMsg(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({msg: message})
         })
-        .then((response) => response.text())
-        .catch((error) => console.error('ERROR:', error));
+            .then((response) => response.text())
+            .catch((error) => console.error('ERROR:', error));
     }
     clearMsgInput();
 } 
@@ -57,11 +56,12 @@ function displayMsgLog(){
         messageDiv.className = "message";
 
         messageDiv.innerHTML += `<span class='date'>${time}</span> `;
-        messageDiv.innerHTML += `<span class='user' style="color:${userColor}">${user}: </span>`;
+        messageDiv.innerHTML += `<span class='user'
+        style="color:${userColor}; text-shadow: 1px 1px 1px #000000cc"> ${user}: </span>`;
         messageDiv.innerHTML += `${msg}<br>`;
 
         chatbox.appendChild(messageDiv); 
-        colorAllMessages();
+        addZebraEffect();
     }
 
     if(scroll){
@@ -79,7 +79,7 @@ function addLinks(message){
     return wordArray.join();
 }
 
-function colorAllMessages(){
+function addZebraEffect(){
     messages = document.getElementsByClassName("message");
     for(let i = 0; i < messages.length; i++){
         let message = messages[i];
@@ -134,24 +134,10 @@ async function sendUserSettings(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({userColor: userColor})
         })
-        .then((response) => response.text())
-        .catch((error) => console.error('ERROR:', error));
+            .then((response) => response.text())
+            .catch((error) => console.error('ERROR:', error));
     }
-    toggleSettingsPanel();
-}
-
-function toggleSettingsPanel(){
-    let settingsPanel = document.getElementById("settingsPanel");
-    let darkFilter = document.getElementById("darkFilter");
-
-    if (settingsPanel.style.display == ""){
-        settingsPanel.style.display = "block";
-        darkFilter.style.display = "initial";
-    }
-    else{
-        settingsPanel.style.display = "";
-        darkFilter.style.display = "";
-    }
+    togglePanel("userSettingsPanel");
 }
 
 function enterKeyListener(){
@@ -164,7 +150,5 @@ function redirectPage(page){
     window.location.href = page;
 }
 
-// document.getElementById("msgInput").addEventListener("keydown", enterKeyListener);
-// document.getElementById("settingsButton").addEventListener("click", "toggleSettingsPanel");
 requestMsgLog();
 setInterval(requestMsgLog, 1000);

@@ -7,11 +7,31 @@
     <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
     <link rel="stylesheet" href="/css/shared.css" type="text/css">
     <script src="login.js"></script>
+    <script src="/js/shared.js"></script>
 </head>
 <body>
     <div class="header">
         <h1>Chatbox</h1>
+        <div id="localSettingsButton" onclick="togglePanel('localSettingsPanel')"></div>
     </div>
+
+    <form onsubmit="saveLocalSettings(); return false" id="localSettingsPanel" class="mainForm">
+        <legend>Local Settings</legend>
+        <label for="theme">Color Theme:</label>
+        <input type="text" id="theme" onclick="dropDownList(this, 'themeList')" readonly>
+        <div class="dropdownMenu" id="themeList">
+            <div class="dropdownOption" data-value="Automatic" 
+                onclick="dropdownListOption(this, 'theme')">Automatic</div>
+            <div class="dropdownOption" data-value="Light" 
+                onclick="dropdownListOption(this, 'theme')">Light</div>
+            <div class="dropdownOption" data-value="Dark" 
+                onclick="dropdownListOption(this, 'theme')">Dark</div>
+        </div>
+        <button type="submit">Save Settings</button>
+    </form>
+    
+    <div id="darkFilter"></div>
+
     <form onsubmit="submitForm(); return false" class="mainForm">
         <legend>Login</legend>
         <label for="username">Username:</label><br>
@@ -24,7 +44,7 @@
     </form>
     <div class="footer">
         <a href="https://github.com/ppalexandre/chatbox" target="_blank" rel="noopener noreferrer">
-            <img src="/imgs/github_icon.png" alt="Github icon">
+            <div id="githubIcon"></div>
             <div>Github Repository</div>
         </a>
     </div>

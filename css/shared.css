@@ -1,10 +1,63 @@
+:root{
+    /* dark mode colors: */
+    /* --backgroundColor: #36363f; */
+    /* --baseColor: #4a4a4d; */
+    /* --baseColorHeavy: #48484b; */
+    /* --baseColorLight: #4b4b4f; */
+    /* --headerColor: #2f2f35; */
+    /* --footerColor: #323237; */
+    /* --textColor: #f5f5f5; */
+    /* --textShadowColor: #000000aa; */
+    /* --textShadowColorInverse: #ffffffaa; */
+    /* --dateColor: #aaaaaa; */
+    /* --boxShadowColor: #03030345; */
+    /* --boxShadowColorHeavy: #03030370; */
+    /* --boxShadowColorLight: #00000020; */
+    /* --borderColor: #050505; */
+    /* --linkColor: #6666ff; */
+    /* --errorBoxColor: #ff5555; */
+    /* --githubIconURL: url('/imgs/github-white.png'); */
+    /* --userIconURL: url('/imgs/user-white.png'); */
+    /* --cogIconURL: url('/imgs/cog-white.png'); */
+
+    --backgroundColor: #dfdfdf;
+    --baseColor: #ffffff;
+    --baseColorLight: #ffffff;
+    --baseColorHeavy: #f6f6f6;
+    --headerColor: #cbcbcb;
+    --footerColor: #bbbbbb;
+    --textColor: #030305;
+    --textShadowColor: #ffffffaa;
+    --textShadowColorInverse: #000000aa;
+    --dateColor: #707070;
+    --boxShadowColor: #03030345;
+    --boxShadowColorHeavy: #03030370;
+    --boxShadowColorLight: #00000020;
+    --borderColor: #050505;
+    --linkColor: #5555bb;
+    --errorBoxColor: #cc2222;
+    --iconColor: #000000;
+    --githubIconURL: url('/imgs/github-black.png');
+    --userIconURL: url('/imgs/user-black.png');
+    --cogIconURL: url('/imgs/cog-black.png');
+}
+
 *{
     box-sizing: border-box;
+    color: var(--textColor);
 }
 
 body {
-    background-color: #dfdfdf;
+    background-color: var(--backgroundColor);
     margin: 0;
+}
+
+a {
+    color: var(--linkColor);
+}
+
+svg {
+    color: var(--iconColor);
 }
 
 .header{
@@ -12,7 +65,7 @@ body {
     display: flex;
     width: 100vw;
     height: 40px;
-    background-color: #cbcbcb;
+    background-color: var(--headerColor);
     top: 0%;
     align-items: center;
     text-align: center;
@@ -22,8 +75,7 @@ body {
     margin-left: 8px;
     display: inline-flex;
     align-items: center;
-    color: #000000;
-    text-shadow: 1px 1px 2px #ffffffaa;
+    text-shadow: 1px 1px 2px var(--textShadowColor);
 }
 
 .footer{
@@ -31,7 +83,7 @@ body {
     display: flex;
     width: 100vw;
     height: 35px;
-    background-color: #bbbbbb;
+    background-color: var(--footerColor);
     bottom: 0%;
     align-items: center;
     text-align: center;
@@ -43,19 +95,19 @@ body {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    color: #000000;
-    text-shadow: 1px 1px 2px #ffffffaa;
+    text-shadow: 1px 1px 2px var(--textShadowColor);
 }
 
-.footer img{
-    width: 28px;
-    height: 28px;
-    margin-left: 5px;
-    margin-top: -2px;
+#githubIcon{
+    background-image: var(--githubIconURL);    
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 2px;
 }
 
 #errorBox{
-    color: #cc2222;  
+    color: var(--errorBoxColor);  
 }
 
 .mainForm{
@@ -65,10 +117,14 @@ body {
     transform: translateX(-50%);
     width: 300px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: var(--baseColorHeavy);
     border-radius: 8px;
     margin-top: 70px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 var(--boxShadowColor);
+}
+
+.mainform *{
+    color: #000000;
 }
 
 .mainForm legend{
@@ -90,6 +146,7 @@ body {
     position: relative;
     width: 100%;
     height: 30px;
+    background-color: var(--baseColorLight);
     box-sizing: border-box;
     border: 2px solid #777777;
     border-radius: 4px;
@@ -100,9 +157,66 @@ body {
 .mainForm button[type="submit"]{
     position: relative;
     height: 30px;
+    background-color: var(--baseColorLight);
     font-weight: bold;
     font-size: 15px;
     margin-top: 15px;
     margin-right: 5px;
     cursor: pointer;
 }
+
+#localSettingsButton{
+    background-image: var(--cogIconURL);
+    background-size: cover;
+    position: absolute;
+    right: 15px;
+    height: 35px;
+    width: 35px;
+    margin-bottom: 2px;
+    z-index: 11;
+    cursor: pointer;
+}
+
+#localSettingsPanel{
+    display: none;
+    z-index: 10;
+}
+
+#darkFilter {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: #000000aa;
+    z-index: 9;
+}
+
+.dropdownMenu{
+    display: none;
+    width: 260px;
+    height: 100px;
+    margin-top: 8px;
+    padding: 5px;
+    background-color: var(--baseColor);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--borderColor);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 var(--boxShadowColor);
+    cursor: pointer;
+}
+
+.dropdownOption{
+    width: 250px;
+    height: 30px;
+    padding: 5px;
+    background-color: var(--baseColor);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: var(--borderColor);
+    box-shadow: 0 4px 8px 0 var(--boxShadowColor);
+    cursor: pointer;
+}
+
