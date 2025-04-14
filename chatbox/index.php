@@ -7,6 +7,7 @@ if(!isset($_SESSION["loggedin"])){
 ?>
 
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,8 @@ if(!isset($_SESSION["loggedin"])){
     <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
     <link rel="stylesheet" href="chatbox.css" type="text/css">
     <link rel="stylesheet" href="/css/shared.css" type="text/css">
-    <script src="chatbox.js"></script>
     <script src="/js/shared.js"></script>
+    <script src="chatbox.js"></script>
 </head>
 <body>
     <div class="header">
@@ -62,3 +63,4 @@ if(!isset($_SESSION["loggedin"])){
         </a>
     </div>
 </body>
+<html>

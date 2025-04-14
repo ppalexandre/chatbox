@@ -137,7 +137,7 @@ async function sendUserSettings(){
             .then((response) => response.text())
             .catch((error) => console.error('ERROR:', error));
     }
-    togglePanel("userSettingsPanel");
+    togglePanel("userSettingsPanel", allPanelIds);
 }
 
 function enterKeyListener(){

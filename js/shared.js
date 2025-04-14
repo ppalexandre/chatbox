@@ -1,6 +1,6 @@
 let rootElement = document.querySelector(":root");
-let allPanelIds = ["localSettingsPanel"];
 let themeCookieValue = "";
+let allPanelIds = ["localSettingsPanel"];
 
 function setVar(varName, color){
     rootElement.style.setProperty(varName, color);
@@ -49,12 +49,12 @@ function toggleDarkMode(darkMode){
     }
 }
 
-function togglePanel(chosenPanelId){
+function togglePanel(chosenPanelId, panelIds = allPanelIds){
     let chosenPanel = document.getElementById(chosenPanelId);
     let darkFilter = document.getElementById("darkFilter");
 
-    for (let i = 0; i < allPanelIds.length; i++){
-        if(allPanelIds[i] === chosenPanelId){
+    for (let i = 0; i < panelIds.length; i++){
+        if(panelIds[i] === chosenPanelId){
             if(chosenPanel.style.display == ""){
                 chosenPanel.style.display = "block";
                 darkFilter.style.display = "initial";
@@ -65,7 +65,7 @@ function togglePanel(chosenPanelId){
             }
         }
         else{
-            let panel = document.getElementById(allPanelIds[i]);
+            let panel = document.getElementById(panelIds[i]);
             panel.style.display = "";
         }
     }
