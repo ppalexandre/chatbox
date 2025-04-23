@@ -54,7 +54,6 @@ body{
 }
 
 #msgInput {
-    display: inline;
     width: calc(90% - 50px);
     height: 100%;
     background-color: var(--baseColorLight);
@@ -126,4 +125,22 @@ body{
 
 .messageLight {
     background-color: var(--baseColorLight);
+}
+
+.dateMessage {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 25px;
+    height: auto;
+    padding-left: 3px;
+    line-height: 1.5;
+    font-size: 15px;
+    word-wrap: anywhere;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    background-color: var(--baseColorHeaviest);
+    text-align: center;
+    z-index: 6;
+    box-shadow: 1px 1px 4px 1px var(--boxShadowColorHeavy);
 }

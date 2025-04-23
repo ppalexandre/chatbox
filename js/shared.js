@@ -12,6 +12,7 @@ function toggleDarkMode(darkMode){
         setVar("--baseColor", "#4a4a4d");
         setVar("--baseColorLight", "#48484b");
         setVar("--baseColorHeavy", "#4b4b4f");
+        setVar("--baseColorHeaviest", "#454548");
         setVar("--headerColor", "#2f2f35");
         setVar("--footerColor", "#323237");
         setVar("--textColor", "#f5f5f5");
@@ -32,6 +33,7 @@ function toggleDarkMode(darkMode){
         setVar("--baseColor", "#ffffff");
         setVar("--baseColorLight", "#ffffff");
         setVar("--baseColorHeavy", "#f6f6f6");
+        setVar("--baseColorHeaviest", "#f0f0f0");
         setVar("--headerColor", "#cbcbcb");
         setVar("--footerColor", "#bbbbbb");
         setVar("--textColor", "#030305");

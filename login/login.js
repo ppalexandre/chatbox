@@ -15,7 +15,6 @@ async function submitForm(){
 
         if (response != ""){
             response = JSON.parse(response); 
-            console.log(response);
             if (response.login == true){
                 redirectPage("/chatbox/");
             }

@@ -1,6 +1,7 @@
 let messageLog = "";
 let lastMsgId = 0;
 let regexLink = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:, .;]*[-a-zA-Z0-9+&@#/%=~_|])";
+let messageTimestamps = [new Date(0)];
 allPanelIds = ["localSettingsPanel", "userSettingsPanel"];
 
 async function sendMsg(){
@@ -52,6 +53,18 @@ function displayMsgLog(){
         let timestamp = parseDate(log[i].timestamp);
         let time = formatTime(timestamp.getHours(), timestamp.getMinutes());
 
+        const currentMessageDay = timestamp.getDate();
+        const currentMessageMonth = timestamp.getMonth();
+        const lastMessageDay = messageTimestamps.at(-1).getDate();
+        const lastMessageMonth = messageTimestamps.at(-1).getMonth();
+        const currentDayBigger = (currentMessageDay > lastMessageDay);
+        const currentMonthBigger = (currentMessageMonth > lastMessageDay);
+
+        if (currentMonthBigger | (currentDayBigger & currentMessageMonth == lastMessageMonth)){
+            addDateMessage(timestamp);
+        }
+        messageTimestamps.push(timestamp); 
+
         let messageDiv = document.createElement("div");
         messageDiv.className = "message";
 
@@ -73,7 +86,7 @@ function addLinks(message){
     let wordArray = message.split();
     for(let i = 0; i < wordArray.length; i++){
         if(wordArray[i].match(regexLink)){
-            wordArray[i] = `<a href=${wordArray[i]}>${wordArray[i]}</a>`;
+            wordArray[i] = `<a href=${wordArray[i]} tabindex=-1>${wordArray[i]}</a>`;
         }
     }
     return wordArray.join();
@@ -90,6 +103,14 @@ function addZebraEffect(){
             message.className = "message messageLight";
         }
     }
+}
+
+function addDateMessage(timestamp){
+    let dateDiv = document.createElement("div");
+    dateDiv.className = "date";
+
+    dateDiv.innerHTML += `<span class='dateMessage'>${timestamp.toLocaleDateString()}</span> `;
+    chatbox.appendChild(dateDiv); 
 }
 
 function sanitizeInput(input){
@@ -140,9 +161,9 @@ async function sendUserSettings(){
     togglePanel("userSettingsPanel", allPanelIds);
 }
 
-function enterKeyListener(){
+function enterKeyListener(functionName){
     if (event.key === "Enter"){
-        sendMsg();
+        window[functionName]();
     }
 }
 
