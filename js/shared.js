@@ -22,7 +22,7 @@ function toggleDarkMode(darkMode){
         setVar("--boxShadowColorHeavy", "#03030370");
         setVar("--boxShadowColorLight", "#00000020");
         setVar("--borderColor", "#050505");
-        setVar("--linkColor", "#6666ff");
+        setVar("--linkColor", "#7777ff");
         setVar("--errorBoxColor", "#ff5555");
         setVar("--githubIconURL", "url('/imgs/github-white.png')");
         setVar("--userIconURL", "url('/imgs/user-white.png')");

@@ -93,9 +93,26 @@ body{
     box-shadow: inset 0 3px 6px 0 var(--boxShadowColor);
 }
 
+.messageWrapper {
+    width: 100%; 
+    min-height: 1.2em; 
+    position: relative;
+    display: inline;
+    width: 100%;
+    min-height: 1.2em;
+    height: auto;
+    line-height: 1.5;
+    font-size: 15px;
+    word-wrap: anywhere;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
 .user {
     color: #2222dd;
-        text-shadow: 1px 1px 1px #000000cc;
+    text-shadow: 1px 1px 1px #000000cc;
 }
 
 .date {
@@ -107,14 +124,18 @@ body{
     position: relative;
     display: block;
     width: 100%;
-    min-height: 25px;
+    min-height: 1.2em;
     height: auto;
     padding-left: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     line-height: 1.5;
     font-size: 15px;
     word-wrap: anywhere;
     word-break: break-all;
     overflow-wrap: anywhere;
+    overflow: hidden;
+    white-space: pre-wrap;
 }
 
 .messageDark {
@@ -125,6 +146,19 @@ body{
 
 .messageLight {
     background-color: var(--baseColorLight);
+}
+
+.readMoreButton{
+    height: 22px;
+    width: 100%;
+    background-color: var(--baseColorHeaviest);
+    position: relative;
+    color: var(--dateColor);
+    font-weigth: bold;
+    font-style: italic;
+    padding-left: 10px;
+    user-select: none;
+    text-shadow: 2px 2px 2px var(--textShadowColor);
 }
 
 .dateMessage {

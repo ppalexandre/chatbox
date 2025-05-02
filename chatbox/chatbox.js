@@ -65,6 +65,8 @@ function displayMsgLog(){
         }
         messageTimestamps.push(timestamp); 
 
+        let messageWrapper = document.createElement("div");
+        messageWrapper.className = "messageWrapper";
         let messageDiv = document.createElement("div");
         messageDiv.className = "message";
 
@@ -73,7 +75,13 @@ function displayMsgLog(){
         style="color:${userColor}; text-shadow: 1px 1px 1px #000000cc"> ${user}: </span>`;
         messageDiv.innerHTML += `${msg}<br>`;
 
-        chatbox.appendChild(messageDiv); 
+        messageWrapper.appendChild(messageDiv); 
+
+        if (countMessageLines(msg) > 8){
+            addReadMore(messageWrapper, messageDiv);
+        }
+
+        chatbox.appendChild(messageWrapper); 
         addZebraEffect();
     }
 
@@ -144,6 +152,38 @@ function formatTime(hours, minutes){
     }
     let time = `${hours}:${minutes}`; 
     return time;
+}
+
+function countMessageLines(msg){
+    let lines = msg.split(/\r\n|\r|\n/).length;
+    return lines;
+}
+
+function addReadMore(messageWrapper, messageDiv){
+    let readMoreDiv = document.createElement("div");
+    readMoreDiv.className = "readMoreButton";
+    readMoreDiv.style.cursor = "pointer";
+    readMoreDiv.addEventListener("click", toggleReadMore);
+    readMoreDiv.innerText = 'Expand message';
+
+    messageWrapper.appendChild(readMoreDiv);
+    messageDiv.style.maxHeight = "10.5em";
+    messageDiv.dataset.expanded = "false";
+}
+
+function toggleReadMore(){
+    let readMoreDiv = this;
+    let messageWrapper = readMoreDiv.previousElementSibling;
+    if (messageWrapper.dataset.expanded === "false"){
+        readMoreDiv.innerText = "Collapse message";
+        messageWrapper.style.maxHeight = "";
+        messageWrapper.dataset.expanded = "true";
+    }
+    else{
+        readMoreDiv.innerText = "Expand message";
+        messageWrapper.style.maxHeight = "10.5em";
+        messageWrapper.dataset.expanded = "false";
+    }
 }
 
 async function sendUserSettings(){

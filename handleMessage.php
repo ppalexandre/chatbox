@@ -27,7 +27,7 @@ function sendMsg($msg, $userId, $ip, $timestamp) {
 }
 
 function isMessageSizeValid($message) {
-    if(empty($message) | strlen($message) > 800){
+    if(empty($message) | strlen($message) > 1650){
         return false;
     }
     else{

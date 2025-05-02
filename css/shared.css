@@ -15,7 +15,7 @@
     /* --boxShadowColorHeavy: #03030370; */
     /* --boxShadowColorLight: #00000020; */
     /* --borderColor: #050505; */
-    /* --linkColor: #6666ff; */
+    /* --linkColor: #7777ff; */
     /* --errorBoxColor: #ff5555; */
     /* --githubIconURL: url('/imgs/github-white.png'); */
     /* --userIconURL: url('/imgs/user-white.png'); */
@@ -38,7 +38,6 @@
     --borderColor: #050505;
     --linkColor: #5555bb;
     --errorBoxColor: #cc2222;
-    --iconColor: #000000;
     --githubIconURL: url('/imgs/github-black.png');
     --userIconURL: url('/imgs/user-black.png');
     --cogIconURL: url('/imgs/cog-black.png');

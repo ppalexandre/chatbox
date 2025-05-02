@@ -51,8 +51,8 @@ if(!isset($_SESSION["loggedin"])){
     <div id="chatWrapper">
         <div id="chatbox" tabindex="-1"></div>
         <div id="msgBar">
-            <textarea id="msgInput" maxlength="800" onkeydown="enterKeyListener('sendMsg')"
-                autocomplete="off" rows="5" cols="50"></textarea>
+            <textarea id="msgInput" maxlength="1600" onkeydown="enterKeyListener('sendMsg')"
+                autocomplete="off" rows="20" cols="80"></textarea>
             <div id="sendButton" onclick="sendMsg()">Send</div>
         </div>
     </div>
